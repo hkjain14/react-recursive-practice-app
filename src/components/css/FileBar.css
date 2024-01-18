@@ -1,0 +1,36 @@
+.root {
+    padding-left: 40px;
+    padding-top: 20px;
+}
+.bar {
+    padding-bottom: 20px;
+}
+.text {
+    padding-left: 10px;
+    font-size: 25px;
+}
+.icons-panel {
+    padding-left: 60px;
+}
+.collapse {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.expand {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.icons {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding-right: 13px;
+}
+.hover-icons {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding-right: 3px;
+}
