@@ -5,13 +5,15 @@ function NewFolder({setIsNewFolderButtonClicked, data}) {
     const [folderName, setFolderName] = useState('');
     const keyDownHandler = (e) => {
         if(e.key === 'Enter') {
-            const entry = {
-                isFolder: true,
-                name: folderName,
-                children: [],
-            };
-            data.push(entry);
             setIsNewFolderButtonClicked(false);
+            if(folderName) {
+                const entry = {
+                    isFolder: true,
+                    name: folderName,
+                    children: [],
+                };
+                data.push(entry);
+            }
         }
     }
     const changeHandler = (e) => {

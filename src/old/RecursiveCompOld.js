@@ -1,31 +1,55 @@
 import {useState} from "react";
+import { ReactComponent as ExpandIcon } from './expand.svg';
+import { ReactComponent as CollapseIcon } from './collapse.svg';
+import { ReactComponent as FileIcon } from './file.svg';
+import RecursiveCompOldCss from './RecursiveCompOld.css';
+
 export default function RecursiveCompOld({parent}) {
     const [expanded, setExpanded] = useState({});
-    const clickHandler = (name) => {
-        setExpanded({...expanded, [name]: !expanded[name]});
+
+    function onClickHandler(idx) {
+        setExpanded({...expanded, [idx]: !expanded[idx]});
     }
-    return (
+
+    return(
         <div>
             {
-                parent.map((child) => {
-                    return (<div key={child.name}>
-                        {child.isFolder ?
-                            <button onClick={() => clickHandler(child.name)}>{child.name}</button>:
-                            <div>{child.name}</div>
-                        }
-                        {/*<div style={{display: !expanded[child.name] && 'none'}}>*/
-                            /* If this is uncommented and condition removed from line 19, then expanded grandchildren remain expanded when grandparent is collapsed and expanded  */
-                        }
-                            {child.children && expanded[child.name]?
-                                <div style={{paddingLeft: '10px'}}>
-                                    <RecursiveCompOld parent={child.children}/>
-                                </div>
-                                :
-                                <div/>}
-                        {/*</div>*/}
-                    </div>)
+                parent.map((el, idx) => {
+                    return (
+                        <div key={idx}>
+                            {
+                                el.isFolder ?
+                                    <span>
+                                      <span>
+                                          {
+                                              !expanded[idx] ?
+                                                  <ExpandIcon className='icons'
+                                                          onClick={() => el.children && onClickHandler(idx)}/>
+                                                  :
+                                                  <CollapseIcon className='icons'
+                                                            onClick={() => el.children && onClickHandler(idx)}/>
+                                          }
+                                          {el.name}
+                                      </span>
+                                        {
+                                            expanded[idx] ?
+                                                <div style={{paddingLeft: '10px'}}>
+                                                    <RecursiveCompOld parent={el.children}/>
+                                                </div>
+                                                :
+                                                <div/>
+                                        }
+                                    </span>
+                                    :
+                                    <span>
+                                      <FileIcon className='icons'/>
+                                        {el.name}
+                                    </span>
+                            }
+                        </div>
+                    )
                 })
             }
         </div>
-    );
+    )
 }

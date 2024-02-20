@@ -35,6 +35,14 @@ const oldData = [
             },
         ],
     },
+    {
+        isFolder: false,
+        name: "index.js"
+    },
+    {
+        isFolder: true,
+        name: "components"
+    }
 ];
 
 export default oldData;

@@ -5,3 +5,10 @@
     font-size: 18px;
     padding-right: 50px;
 }
+
+.hover-icons {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding-right: 3px;
+}
